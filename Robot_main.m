@@ -102,7 +102,7 @@ for ind=2:N_o45
     zout_temp           =   ode45(@(t,z)robot_dyn_model(t,z,uout_o45(:,ind-1),0,th, theta_dot),[0 Ts_o45],zout_o45(:,ind-1));
     zout_o45(:,ind)     =   zout_temp.y(:,end);
     theta_o45(1,ind)    =   zout_o45(3,ind);   
-    theta_dot           =   (theta_o45(1,ind)-theta_o45(1,ind-1))/Ts_FFD;
+    theta_dot           =   (theta_o45(1,ind)-theta_o45(1,ind-1))/Ts_o45;
     %uout_o45(:,ind)     =   uout_o45(:,1);
 end
 t_o45 = toc
