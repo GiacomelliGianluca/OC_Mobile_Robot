@@ -82,7 +82,7 @@ figure(2),p2 = plot(tvec_FFD,zout_FFD(3,:)),grid on, hold on,xlabel('Time (s)'),
 %% Simulation with ode45
 
 % Time integration parameters
-Ts_o45      =       0.1;               % sampling time (s)
+Ts_o45      =       1e-1;               % sampling time (s)
 Tend_o45    =       100;                % final time (s)
 tvec_o45    =       0:Ts_o45:Tend_o45;  % time vector (s)
 
