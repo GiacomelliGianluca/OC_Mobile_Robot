@@ -25,15 +25,22 @@ L       =       0.05;
 th      =       [Ic;Iw;d;mw;mc;Im;R;L];
 
 %% Simulation: Initial state
-xa       =       0;  
-ya       =       0; 
-theta    =       0;   
-phir     =       0;    
-phil     =       0;   
-phir_dot =       0;      
-phil_dot =       0;
+xa          =       0;  
+ya          =       0; 
+theta       =       0;   
+phir        =       0;    
+phil        =       0;   
+xa_dot      =       0;  
+ya_dot      =       0; 
+theta_dot   =       0;   
+phir_dot    =       0;    
+phil_dot    =       0;  
 
-z0 = [xa;ya;theta;phir;phil;phir_dot;phil_dot];
+%phir_dot =       0;      
+%phil_dot =       0;
+
+%z0 = [xa;ya;theta;phir;phil;phir_dot;phil_dot];
+z0 = [xa;ya;theta;phir;phil;xa_dot;ya_dot;theta_dot;phir_dot;phil_dot];
 
 
 %% Simulation: step amplitude
@@ -50,23 +57,23 @@ tvec_FFD    =       0:Ts_FFD:Tend_FFD;  % time vector (s)
 
 % Initialize simulation output
 N_FFD               =       length(tvec_FFD);   % number of samples
-zout_FFD            =       zeros(7,N_FFD);     % matrix with states
+zout_FFD            =       zeros(10,N_FFD);     % matrix with states
 uout_FFD            =       zeros(2,N_FFD);     % matrix with inputs
 zout_FFD(:,1)       =       z0;                 % matrix of the states z(t+1) 
 uout_FFD(:,1)       =       u;                  % matrix of the inputs
-theta_FFD           =       zeros(1,N_FFD);     % yaw angle
-theta_FFD(1,1)      =       theta;              % yaw angle initialization
-theta_dot           =       0;                  % yaw rate initialization
+% theta_FFD           =       zeros(1,N_FFD);     % yaw angle
+% theta_FFD(1,1)      =       theta;              % yaw angle initialization
+% theta_dot           =       0;                  % yaw rate initialization
 
 % Run simulation
 
 % Computation of zout_FFD using Forward Euler Method
 tic
 for ind=2:N_FFD
-    zdot                =      robot_dyn_model(0,zout_FFD(:,ind-1),uout_FFD(:,ind-1),0,th,theta_dot);          % derivatives of the state variables
+    zdot                =      robot_dyn_model(0,zout_FFD(:,ind-1),uout_FFD(:,ind-1),0,th);          % derivatives of the state variables
     zout_FFD(:,ind)     =      zout_FFD(:,ind-1)+Ts_FFD*zdot;                                                  % update t given t-1                                   
-    theta_FFD(1,ind)    =      zout_FFD(3,ind);                                                                 % update of the yaw angle                                               
-    theta_dot           =      (theta_FFD(1,ind)-theta_FFD(1,ind-1))/Ts_FFD;
+%     theta_FFD(1,ind)    =      zout_FFD(3,ind);                                                                 % update of the yaw angle                                               
+%     theta_dot           =      (theta_FFD(1,ind)-theta_FFD(1,ind-1))/Ts_FFD;
     %uout_FFD(:,ind)     =      uout_FFD(:,1);
 %   if (ind >= round(N_FFD/2))
 %      uout_FFD(:,ind) = [5 0]';  
