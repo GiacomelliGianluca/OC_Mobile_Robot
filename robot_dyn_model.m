@@ -31,7 +31,6 @@ phil_dot            =       z(7,1);    % angular velocity left wheel (rad/s)
 cth = cos(theta);
 sth = sin(theta);
 
-%theta_dot = R/(2*L)*phir_dot-(R/2*L)*phil_dot;
 lam = [-sth     cth     0;
         cth     sth     L;
         cth     sth     -L];
@@ -58,8 +57,6 @@ S = [R/(2*L)*(L*cth-d*sth) R/(2*L)*(L*cth+d*sth);
      R/(2*L)               -R/(2*L)             ;
      1                      0                   ;
      0                      1];
-
-
 
 
 M_bar = [Iw+R^2/(4*L^2)*(mT*L^2+I)          R^2/(4*L^2)*(mT*L^2-I); 
