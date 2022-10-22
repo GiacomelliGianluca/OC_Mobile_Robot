@@ -30,17 +30,10 @@ ya          =       0;
 theta       =       0;   
 phir        =       0;    
 phil        =       0;   
-% xa_dot      =       0;  
-% ya_dot      =       0; 
-% theta_dot   =       0;   
-% phir_dot    =       0;    
-% phil_dot    =       0;  
-
 phir_dot =       0;      
 phil_dot =       0;
 
 z0 = [xa;ya;theta;phir;phil;phir_dot;phil_dot];
-% z0 = [xa;ya;theta;phir;phil;xa_dot;ya_dot;theta_dot;phir_dot;phil_dot];
 
 
 %% Simulation: step amplitude
@@ -70,9 +63,9 @@ for ind=2:N_FFD
     zdot                =      robot_dyn_model(0,zout_FFD(:,ind-1),uout_FFD(:,ind-1),0,th);          % derivatives of the state variables
     zout_FFD(:,ind)     =      zout_FFD(:,ind-1)+Ts_FFD*zdot;                                                  % update t given t-1                                   
     uout_FFD(:,ind)     =      uout_FFD(:,1);
-%   if (ind >= round(N_FFD/2))
-%    uout_FFD(:,ind) = [5 0]';  
-%   end
+%     if (ind >= round(N_FFD/2))
+%         uout_FFD(:,ind) = [5 0]';  
+%     end
 end
 t_FFD = toc
 
@@ -105,6 +98,9 @@ for ind=2:N_o45
     zout_temp           =   ode45(@(t,z)robot_dyn_model(t,z,uout_o45(:,ind-1),0,th),[0 Ts_o45],zout_o45(:,ind-1));
     zout_o45(:,ind)     =   zout_temp.y(:,end);
     uout_o45(:,ind)     =   uout_o45(:,1);
+%     if (ind >= round(N_o45/2))
+%         uout_o45(:,ind) = [5 0]';  
+%     end
 end
 t_o45 = toc
 
