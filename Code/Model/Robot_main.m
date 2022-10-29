@@ -24,6 +24,8 @@ L       =       0.05;
 
 th      =       [Ic;Iw;d;mw;mc;Im;R;L];
 
+
+
 %% Simulation: Initial state
 xa          =       0;  
 ya          =       0; 
