@@ -7,7 +7,7 @@
 % Practice 15, pp. 923-941, 2007
 
 %% Initial commands
-clear all
+%clear all
 close all
 clc
 
