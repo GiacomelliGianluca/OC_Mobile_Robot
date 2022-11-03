@@ -18,7 +18,7 @@ d       =       0.05;
 mw      =       0.1;      
 mc      =       1;      
 Im      =       0.1;    
-R       =       0.025;      
+R       =       0.025;      linsys1
 L       =       0.05;     
 
 
@@ -127,7 +127,7 @@ figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s
 % end
 % t_o45 = toc
 % 
-% 
+%
 % 
 % % Plot the results
 % figure(1),p1_o45 = plot(zout_o45(1,:),zout_o45(2,:));grid on, hold on,xlabel('X (m)'),ylabel('Y (m)'), title('Trajectory YX')
