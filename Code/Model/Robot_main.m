@@ -36,7 +36,7 @@ z0 = [xa;ya;theta;phir;phil;phir_dot;phil_dot];
 %% Simulation with forward finite differences
 % Time integration parameters
 Ts_FFD      =       1e-2;               % sampling time (s)
-Tend_FFD    =       10;                % final time / simulation time (s)
+Tend_FFD    =       20;                % final time / simulation time (s)
 tvec_FFD    =       0:Ts_FFD:Tend_FFD;  % time vector (s)
 
 % Initialize simulation output
@@ -57,12 +57,12 @@ for ind=1:N_FFD
     elseif ind > round(N_FFD/4) && ind <= round(N_FFD/2)
         taur(ind) = 0.5;
         taul(ind) = 0;
-    elseif ind > round(N_FFD/2) && ind <= round(3*N_FFD/4)
+    elseif ind > round(N_FFD/2) % && ind <= round(3*N_FFD/4)
         taur(ind) = 0;
         taul(ind) = 0.5;
-    elseif ind > round(3/4*N_FFD) 
-        taur(ind) = -2;
-        taul(ind) = -2;
+%     elseif ind > round(9/10*N_FFD) 
+%         taur(ind) = -2;
+%         taul(ind) = -2;
     end
 end
 
@@ -87,7 +87,7 @@ end
 t_FFD = toc
 
 % Plot the results
-figure(1),p1_FFD = plot(zout_FFD(1,:),zout_FFD(2,:));grid on, hold on,xlabel('X (m)'),ylabel('Y (m)'), title('Trajectory YX'), hold on
+figure(1),p1_FFD = plot(zout_FFD(1,:),zout_FFD(2,:), '--');grid on, hold on,xlabel('X (m)'),ylabel('Y (m)'), title('Trajectory YX'), hold on
 figure(2),p2_FFD = plot(tvec_FFD,zout_FFD(3,:));grid on, hold on,xlabel('Time (s)'),ylabel('Yaw angle'), title('Yaw vs time'), hold on
 figure(3),p3_FFD = plot(tvec_FFD,zout_FFD(6,:));grid on, hold on,xlabel('Time (s)'),ylabel('Righ wheel speed (rad/s)'), title('Right wheel speed'), hold on
 figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s)'),ylabel('Left wheel speed (rad/s)'), title('Left wheel speed'), hold on
@@ -100,10 +100,15 @@ Y = zout_FFD(2,:)';
 THETA = zout_FFD(3,:)';
 
 V = [X Y THETA];
+robot = struct;
+robot.image = imread("robot.jpg");
+robot.rotation = 0;
+robot.centre = [500,500];
+robot.length = 0.3;
+
 
 figure(1)
-h = plot_vehicle(V,'fillcolor','r','box','fps', 60)
-
+h = plot_vehicle(V,'fps', 60, 'model', robot)
 
 %% % %% Simulation with ode45
 % 
