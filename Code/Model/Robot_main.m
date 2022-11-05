@@ -1,10 +1,4 @@
 % Constrained Numerical Optimization for Estimation and Control
-% Laboratory session A
-% Script to initialize and simulate a 6 d.o.f. nonlinear vehicle model
-% using different simulation approaches.
-% Vehicle parameters taken from Canale et al., "Robust vehicle yaw control 
-% using an active differential and IMC techniques", Control Engineering
-% Practice 15, pp. 923-941, 2007
 
 %% Initial commands
 %clear all
@@ -42,7 +36,7 @@ z0 = [xa;ya;theta;phir;phil;phir_dot;phil_dot];
 %% Simulation with forward finite differences
 % Time integration parameters
 Ts_FFD      =       1e-2;               % sampling time (s)
-Tend_FFD    =       100;                % final time / simulation time (s)
+Tend_FFD    =       10;                % final time / simulation time (s)
 tvec_FFD    =       0:Ts_FFD:Tend_FFD;  % time vector (s)
 
 % Initialize simulation output
@@ -99,7 +93,22 @@ figure(3),p3_FFD = plot(tvec_FFD,zout_FFD(6,:));grid on, hold on,xlabel('Time (s
 figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s)'),ylabel('Left wheel speed (rad/s)'), title('Left wheel speed'), hold on
 
 
-% % %% Simulation with ode45
+% %% Visualizer
+% 
+% viz = Visualizer2D;
+% 
+% pose = [z0(1); z0(2); z0(3)];
+% viz(pose)
+% 
+% r = robotics.Rate(1/Ts_FFD);
+% for idx = 1:length(tvec_FFD)
+%     pose = pose + [zout_FFD(1,idx); zout_FFD(2,idx); zout_FFD(3,idx)];
+%     viz(pose)
+%     waitfor(r);
+% end
+
+
+%% % %% Simulation with ode45
 % 
 % % Time integration parameters
 % Ts_o45      =       0.1;               % sampling time (s)
