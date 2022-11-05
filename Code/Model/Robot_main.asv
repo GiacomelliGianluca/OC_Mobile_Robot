@@ -95,18 +95,14 @@ figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s
 
 %% Visualizer
 
-viz = Visualizer2D;
+X = zout_FFD(1,:)';
+Y = zout_FFD(2,:)';
+THETA = zout_FFD(3,:)';
 
-pose = [z0(1); z0(2); z0(3)];
-viz(pose)
+V = [X Y THETA];
 
-r = robotics.Rate(1/Ts_FFD);
-for idx = 1:length(tvec_FFD)
-    pose = pose + [zout_FFD(1,idx); zout_FFD(2,idx); zout_FFD(3,idx)];
-    axis([0  500    0  300])
-    viz(pose)
-    waitfor(r);
-end
+figure(5)
+h = plot_vehicle(V,'fillcolor','b','box', ), title('Robot Trajectory animation'),
 
 
 %% % %% Simulation with ode45

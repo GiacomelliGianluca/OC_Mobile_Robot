@@ -93,19 +93,16 @@ figure(3),p3_FFD = plot(tvec_FFD,zout_FFD(6,:));grid on, hold on,xlabel('Time (s
 figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s)'),ylabel('Left wheel speed (rad/s)'), title('Left wheel speed'), hold on
 
 
-% %% Visualizer
-% 
-% viz = Visualizer2D;
-% 
-% pose = [z0(1); z0(2); z0(3)];
-% viz(pose)
-% 
-% r = robotics.Rate(1/Ts_FFD);
-% for idx = 1:length(tvec_FFD)
-%     pose = pose + [zout_FFD(1,idx); zout_FFD(2,idx); zout_FFD(3,idx)];
-%     viz(pose)
-%     waitfor(r);
-% end
+%% Visualizer
+
+X = zout_FFD(1,:)';
+Y = zout_FFD(2,:)';
+THETA = zout_FFD(3,:)';
+
+V = [X Y THETA];
+
+figure(1)
+h = plot_vehicle(V,'fillcolor','r','box','fps', 60)
 
 
 %% % %% Simulation with ode45
