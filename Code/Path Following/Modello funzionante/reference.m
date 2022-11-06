@@ -6,11 +6,9 @@ clc
 
 load('road.mat')
 
-
 ref_road = data.RoadSpecifications.Centers;
 x_ref = ref_road(:,1);
 y_ref = ref_road(:,2);
-
 
 ref = [x_ref, -y_ref];
 
@@ -42,6 +40,5 @@ robot.rotation = 0;
 robot.centre = [500,500];
 robot.length = 2;
 
-
 figure(10)
-h = plot_vehicle(FDB,'fps', 100, 'model', robot, '--')
+h = plot_vehicle(FDB,'fps', 100, 'model', robot)
