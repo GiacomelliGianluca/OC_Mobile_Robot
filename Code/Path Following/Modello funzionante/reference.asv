@@ -1,0 +1,30 @@
+clear all
+close all
+clc 
+
+%% Import road reference
+
+load('road.mat')
+
+
+ref_road = data.RoadSpecifications.Centers;
+x_ref = ref_road(:,1);
+y_ref = ref_road(:,2);
+
+
+ref = [x_ref, -y_ref];
+
+size = length(ref);
+
+%% Simulink simulation
+
+sim('path_following_PID_v2.slx')
+
+%% multiple xy graph
+figure
+p_ref = plot(ref_data(:,1), ref_data(:,2), '--r*', 'linewidth', 1), grid on, ylabel('Y[m]'), xlabel('X[m]'), title('Actual vs reference trajec') hold on
+p_fdb = plot(fdb_data(:,1), fdb_data(:,2), 'b', 'linewidth', 2), grid on
+
+h = [p_ref p_fdb]'
+
+legend(h, 'reference trajectory', 'actual trajectory')
