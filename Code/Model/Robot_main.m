@@ -104,11 +104,11 @@ robot = struct;
 robot.image = imread("robot.jpg");
 robot.rotation = 0;
 robot.centre = [500,500];
-robot.length = 0.3;
+robot.length = 0.25;
 
 
 figure(1)
-h = plot_vehicle(V,'fps', 60, 'model', robot)
+h = plot_vehicle(V,'fps', 60, 'model', robot, '--')
 
 %% % %% Simulation with ode45
 % 
