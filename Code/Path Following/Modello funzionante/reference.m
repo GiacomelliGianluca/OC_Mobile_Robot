@@ -45,7 +45,11 @@ robot.length = 2;
 
 figure(10)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 h = plot_vehicle(FDB,'fps', 100, 'model', robot, '--')
+=======
+h = plot_vehicle(FDB,'fps', 1000, 'model', robot)
+>>>>>>> Stashed changes
 =======
 h = plot_vehicle(FDB,'fps', 1000, 'model', robot)
 >>>>>>> Stashed changes
