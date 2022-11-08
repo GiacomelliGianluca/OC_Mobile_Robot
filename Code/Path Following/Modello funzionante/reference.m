@@ -27,7 +27,7 @@ h = [p_ref p_fdb]'
 
 legend(h, 'reference trajectory', 'actual trajectory')
 
-% %% Visualizer
+%% Visualizer
 
 X = fdb_data(:,1);
 Y = fdb_data(:,2);
@@ -41,5 +41,5 @@ robot.centre = [500,500];
 robot.length = 2.5;
 
 figure(10)
-h = plot_vehicle(FDB,'fps', 100, 'model', robot, 'movie', 'film.mp4')
+h = plot_vehicle(FDB, 'model', robot, 'movie', 'speed_controlled.mp4')
 
