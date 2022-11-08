@@ -6,11 +6,9 @@ clc
 
 load('road.mat')
 
-
 ref_road = data.RoadSpecifications.Centers;
 x_ref = ref_road(:,1);
 y_ref = ref_road(:,2);
-
 
 ref = [x_ref, -y_ref];
 
@@ -29,18 +27,26 @@ h = [p_ref p_fdb]'
 
 legend(h, 'reference trajectory', 'actual trajectory')
 
-%% Visualizer
+% %% Visualizer
 
 X = fdb_data(:,1);
 Y = fdb_data(:,2);
 THETA = fdb_data(:,3);
 
 FDB = [X Y THETA];
-robot = struct;
-robot.image = imread("robot.jpg");
-robot.rotation = 0;
-robot.centre = [500,500];
-robot.length = 2;
+% robot = struct;
+% robot.image = imread("robot.jpg");
+% robot.rotation = 0;
+% robot.centre = [500,500];
+% robot.length = 2;
+% 
+% figure(10)
+% h = plot_vehicle(FDB,'fps', 600, 'model', robot)
 
-figure(10)
-h = plot_vehicle(FDB,'fps', 100, 'model', robot, '--')
+viz = Visualizer2D;
+viz(FDB,ref);
+
+for idx = 1:length(X)
+    pose = FDB(:,idx);
+    viz(pose,ref);
+    pause(0.)

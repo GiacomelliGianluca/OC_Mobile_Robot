@@ -27,18 +27,33 @@ h = [p_ref p_fdb]'
 
 legend(h, 'reference trajectory', 'actual trajectory')
 
-%% Visualizer
+% %% Visualizer
 
-% X = fdb_data(:,1);
-% Y = fdb_data(:,2);
-% THETA = fdb_data(:,3);
+X = fdb_data(:,1);
+Y = fdb_data(:,2);
+THETA = fdb_data(:,3);
+
+FDB = [X Y THETA];
+robot = struct;
+robot.image = imread("robot.jpg");
+robot.rotation = 0;
+robot.centre = [500,500];
+robot.length = 2;
+
+figure(10)
+h = plot_vehicle(FDB,'fps', 600, 'model', robot, 'movie', 'M')
+
+
+
+
+% viz = Visualizer2D;
+% viz.hasWaypoints = true;
+% viz(FDB(1,:),ref)
 % 
-% FDB = [X Y THETA];
-% robot = struct;
-% robot.image = imread("robot.jpg");
-% robot.rotation = 0;
-% robot.centre = [500,500];
-% robot.length = 2;
-% 
-% figure(10)
-% h = plot_vehicle(FDB,'fps', 100, 'model', robot)
+% for idx = 2:length(X)
+%     pose = FDB(idx,:);
+%     viz(pose,ref);
+%     pause(0.001)
+% end
+
+
