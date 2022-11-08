@@ -38,22 +38,8 @@ robot = struct;
 robot.image = imread("robot.jpg");
 robot.rotation = 0;
 robot.centre = [500,500];
-robot.length = 2;
+robot.length = 2.5;
 
 figure(10)
-h = plot_vehicle(FDB,'fps', 600, 'model', robot, 'movie', 'M')
-
-
-
-
-% viz = Visualizer2D;
-% viz.hasWaypoints = true;
-% viz(FDB(1,:),ref)
-% 
-% for idx = 2:length(X)
-%     pose = FDB(idx,:);
-%     viz(pose,ref);
-%     pause(0.001)
-% end
-
+h = plot_vehicle(FDB,'fps', 100, 'model', robot, 'movie', 'film.mp4')
 
