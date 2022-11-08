@@ -29,16 +29,16 @@ legend(h, 'reference trajectory', 'actual trajectory')
 
 %% Visualizer
 
-X = fdb_data(:,1);
-Y = fdb_data(:,2);
-THETA = fdb_data(:,3);
-
-FDB = [X Y THETA];
-robot = struct;
-robot.image = imread("robot.jpg");
-robot.rotation = 0;
-robot.centre = [500,500];
-robot.length = 2;
-
-figure(10)
-h = plot_vehicle(FDB,'fps', 100, 'model', robot)
+% X = fdb_data(:,1);
+% Y = fdb_data(:,2);
+% THETA = fdb_data(:,3);
+% 
+% FDB = [X Y THETA];
+% robot = struct;
+% robot.image = imread("robot.jpg");
+% robot.rotation = 0;
+% robot.centre = [500,500];
+% robot.length = 2;
+% 
+% figure(10)
+% h = plot_vehicle(FDB,'fps', 100, 'model', robot)
