@@ -41,5 +41,5 @@ robot.centre = [500,500];
 robot.length = 2.5;
 
 figure(10)
-h = plot_vehicle(FDB, 'model', robot, 'movie', 'speed_controlled.mp4')
+h = plot_vehicle(FDB, 'model', robot)
 
