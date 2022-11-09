@@ -19,7 +19,6 @@ L       =       0.05;
 th      =       [Ic;Iw;d;mw;mc;Im;R;L];
 
 
-
 %% Simulation: Initial state
 xa          =       0;  
 ya          =       0; 
@@ -87,28 +86,28 @@ end
 t_FFD = toc
 
 % Plot the results
-figure(1),p1_FFD = plot(zout_FFD(1,:),zout_FFD(2,:), '--');grid on, hold on,xlabel('X (m)'),ylabel('Y (m)'), title('Trajectory YX'), hold on
-figure(2),p2_FFD = plot(tvec_FFD,zout_FFD(3,:));grid on, hold on,xlabel('Time (s)'),ylabel('Yaw angle'), title('Yaw vs time'), hold on
-figure(3),p3_FFD = plot(tvec_FFD,zout_FFD(6,:));grid on, hold on,xlabel('Time (s)'),ylabel('Righ wheel speed (rad/s)'), title('Right wheel speed'), hold on
-figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:));grid on, hold on,xlabel('Time (s)'),ylabel('Left wheel speed (rad/s)'), title('Left wheel speed'), hold on
+figure(1),p1_FFD = plot(zout_FFD(1,:),zout_FFD(2,:), 'linewidth', 2);grid on, hold on,xlabel('X (m)'),ylabel('Y (m)'), title('Trajectory YX'), hold on
+figure(2),p2_FFD = plot(tvec_FFD,zout_FFD(3,:), 'linewidth', 2);grid on, hold on,xlabel('Time (s)'),ylabel('Yaw angle (rad)'), title('Yaw vs time'), hold on
+figure(3),p3_FFD = plot(tvec_FFD,zout_FFD(6,:), 'linewidth', 2);grid on, hold on,xlabel('Time (s)'),ylabel('Righ wheel speed (rad/s)'), title('Right wheel speed'), hold on
+figure(4),p4_FFD = plot(tvec_FFD,zout_FFD(7,:), 'linewidth', 2);grid on, hold on,xlabel('Time (s)'),ylabel('Left wheel speed (rad/s)'), title('Left wheel speed'), hold on
 
 
 %% Visualizer
-
-X = zout_FFD(1,:)';
-Y = zout_FFD(2,:)';
-THETA = zout_FFD(3,:)';
-
-V = [X Y THETA];
-robot = struct;
-robot.image = imread("robot.jpg");
-robot.rotation = 0;
-robot.centre = [500,500];
-robot.length = 0.25;
-
-
-figure(1)
-h = plot_vehicle(V,'fps', 60, 'model', robot, '--')
+% 
+% X = zout_FFD(1,:)';
+% Y = zout_FFD(2,:)';
+% THETA = zout_FFD(3,:)';
+% 
+% V = [X Y THETA];
+% robot = struct;
+% robot.image = imread("robot.jpg");
+% robot.rotation = 0;
+% robot.centre = [500,500];
+% robot.length = 0.25;
+% 
+% 
+% figure(1)
+% h = plot_vehicle(V,'fps', 60, 'model', robot, '--')
 
 %% % %% Simulation with ode45
 % 
